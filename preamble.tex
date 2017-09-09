@@ -1,0 +1,180 @@
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage[]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{bytefield}
+\usepackage{subcaption}
+\usepackage{pgf-umlsd}
+\usepackage{pgf-umlcd}
+\usepackage[english]{babel} % set language here
+\usepackage[style=ieee, sorting=none]{biblatex} % citation style
+\usepackage{csquotes}
+\usepackage{appendix}
+\usepackage{listings} % code listings
+\usepackage{float} % extra floats
+\usepackage{sourcecodepro} % best monospaced font ever
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{tikz-qtree}
+\usepackage{dirtree}
+\usepackage[labelfont=bf]{caption}
+\usepackage{enumitem}
+\usepackage[htt]{hyphenat}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\usetikzlibrary{plotmarks}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=newest}
+\usepackage{hyperref} %always last
+
+% definitions for pgf plots generated with python
+\newlength\figureheight%
+\newlength\figurewidth%
+\setlength\figureheight{9cm}
+\setlength\figurewidth{\linewidth}
+
+% input encoding
+\inputencoding{utf8}
+
+% how deep should the Table of Contents be?
+\setcounter{tocdepth}{2}
+
+% enumerate with roman numerals
+\renewcommand{\labelenumii}{\roman{enumii}.}
+
+\setlist{  
+    listparindent=\parindent%
+}
+
+% reference description items
+\makeatletter
+\def\namedlabel#1#2{\begingroup
+    #2%
+    \def\@currentlabel{#2}%
+    \phantomsection\label{#1}\endgroup
+}
+\makeatother
+
+% hanging captions
+\captionsetup{format=hang}
+
+% Color definitions
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% C++ code style
+\lstdefinestyle{CPP}{
+    language=[11]C++,
+    frame=Lbtr,
+    xleftmargin=\parindent,
+    captionpos=b,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{purple},
+    commentstyle=\color{gray},
+    stringstyle=\color{dkgreen},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    morekeywords={string,define,\#},
+    otherkeywords={\#},
+    backgroundcolor=\color{lightgray},
+    escapeinside={/l*}{*l/}
+}
+
+% XML style
+\lstdefinestyle{myXML}{
+    language=XML,
+    frame=Lbtr,
+    xleftmargin=\parindent,
+    captionpos=b,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{purple},
+    commentstyle=\color{gray},
+    stringstyle=\color{dkgreen},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    morekeywords={xml,version, launch, basedir, network, seed},
+    otherkeywords={\#},
+    backgroundcolor=\color{lightgray},
+    escapeinside={/l*}{*l/}
+}
+
+% Python style
+\lstdefinestyle{MyPython}{
+    language=Python,
+    frame=Lbtr,
+    xleftmargin=\parindent,
+    captionpos=b,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{purple},
+    commentstyle=\color{gray},
+    stringstyle=\color{dkgreen},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    morekeywords={traci, print},
+    otherkeywords={},
+    backgroundcolor=\color{lightgray},
+    escapeinside={/l*}{*l/}
+}
+
+% instance threads for pgf-umlsd
+\renewcommand{\newthread}[3][0.2]{
+    \newinst[#1]{#2}{#3}
+    \stepcounter{threadnum}
+    \node[below of=inst\theinstnum,node distance=0.8cm] (thread\thethreadnum) {};
+    \tikzstyle{threadcolor\thethreadnum}=[fill=gray!30]
+    \tikzstyle{instcolor#2}=[fill=gray!30]
+}
+
+% simple blank page
+\newcommand{\blankpage}{
+    \newpage
+    %\thispagestyle{empty}
+    \mbox{}
+    \newpage
+}
+
+% listings wrapped in minipage for easy floating
+\newcommand{\minipagelisting}[3]{
+    \noindent
+    \begin{minipage}{\linewidth}
+        \lstinputlisting[style=CPP, label={#3}, caption={#2}]{#1}
+    \end{minipage}
+}
+
+% list environment item wrapped in minipage to avoid linebreaks
+\newcommand\mcitem[1]{\item\begin{minipage}[t]{\linewidth}#1\end{minipage}}
+
+% footnote spacing
+\setlength{\footnotesep}{.7cm}
+
+% bibliography
+\addbibresource{bibliography.bib}
+
+
+
